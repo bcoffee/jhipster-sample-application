@@ -1,0 +1,44 @@
+{
+    "name": "Attribute",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isSystem",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "enObject",
+            "otherEntityName": "enObject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "objectOptions",
+            "otherEntityName": "attributeOption",
+            "otherEntityRelationshipName": "attribute"
+        }
+    ],
+    "changelogDate": "20190104180601",
+    "entityTableName": "attribute",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

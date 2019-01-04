@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="report">
+            <h2><span>Report</span> {{report.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{report.name}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{report.description}}</span>
+                </dd>
+                <dt><span>Language</span></dt>
+                <dd>
+                    <span>{{report.language}}</span>
+                </dd>
+                <dt><span>Instructions</span></dt>
+                <dd>
+                    <span>{{report.instructions}}</span>
+                </dd>
+                <dt><span>Layout</span></dt>
+                <dd>
+                    <div *ngIf="report.layout">
+                        <a (click)="openFile(report.layoutContentType, report.layout)">open</a>
+                        {{report.layoutContentType}}, {{byteSize(report.layout)}}
+                    </div>
+                </dd>
+                <dt><span>Report Type</span></dt>
+                <dd>
+                    <div *ngIf="report.reportType">
+                        <a [routerLink]="['/report-type', report.reportType?.id, 'view']">{{report.reportType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Report Owner</span></dt>
+                <dd>
+                    {{report.reportOwner?.id}}
+                </dd>
+                <dt><span>Report Category</span></dt>
+                <dd>
+                    <div *ngIf="report.reportCategory">
+                        <a [routerLink]="['/report-category', report.reportCategory?.id, 'view']">{{report.reportCategory?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/report', report.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

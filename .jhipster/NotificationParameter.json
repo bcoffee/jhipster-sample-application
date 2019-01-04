@@ -1,0 +1,46 @@
+{
+    "name": "NotificationParameter",
+    "fields": [
+        {
+            "fieldName": "measure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "durationTrack",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "count",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "countTrack",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "scaneDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "notification",
+            "otherEntityName": "notification",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190104180608",
+    "entityTableName": "notification_parameter",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

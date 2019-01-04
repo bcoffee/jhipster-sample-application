@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-installation-heading">Create or edit a Installation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!installation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="installation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="installation.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="installation.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_language">Language</label>
+                    <select class="form-control" name="language" [(ngModel)]="installation.language" id="field_language" >
+                        <option value="ENGLISH">ENGLISH</option>
+                        <option value="SPANISH">SPANISH</option>
+                        <option value="FRENCH">FRENCH</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_streetAddress">Street Address</label>
+                    <input type="text" class="form-control" name="streetAddress" id="field_streetAddress"
+                        [(ngModel)]="installation.streetAddress" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_postalCode">Postal Code</label>
+                    <input type="text" class="form-control" name="postalCode" id="field_postalCode"
+                        [(ngModel)]="installation.postalCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                        [(ngModel)]="installation.city" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_stateProvince">State Province</label>
+                    <input type="text" class="form-control" name="stateProvince" id="field_stateProvince"
+                        [(ngModel)]="installation.stateProvince" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_timeZone">Time Zone</label>
+                    <input type="text" class="form-control" name="timeZone" id="field_timeZone"
+                        [(ngModel)]="installation.timeZone" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_installation">Installation</label>
+                    <select class="form-control" id="field_installation" name="installation" [(ngModel)]="installation.installation">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="enObjectOption.id === installation.installation?.id ? installation.installation : enObjectOption" *ngFor="let enObjectOption of installations; trackBy: trackEnObjectById">{{enObjectOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_installationLicence">Installation Licence</label>
+                    <select class="form-control" id="field_installationLicence" name="installationLicence" [(ngModel)]="installation.installationLicence">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="licenceOption.id === installation.installationLicence?.id ? installation.installationLicence : licenceOption" *ngFor="let licenceOption of installationlicences; trackBy: trackLicenceById">{{licenceOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

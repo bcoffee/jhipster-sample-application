@@ -1,0 +1,50 @@
+{
+    "name": "MessageMap",
+    "fields": [
+        {
+            "fieldName": "message",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bit",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "ioe",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cipAddress",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "messageType",
+            "otherEntityName": "messageType",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "messageMap"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "messageObjects",
+            "otherEntityName": "enObject",
+            "otherEntityRelationshipName": "messageMap"
+        }
+    ],
+    "changelogDate": "20190104180557",
+    "entityTableName": "message_map",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

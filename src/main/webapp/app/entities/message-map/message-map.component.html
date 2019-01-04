@@ -1,0 +1,68 @@
+<div>
+    <h2 id="page-heading">
+        <span>Message Maps</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-message-map" [routerLink]="['/message-map/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Message Map
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="messageMaps">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Message</span></th>
+            <th><span>Bit</span></th>
+            <th><span>Is Active</span></th>
+            <th><span>Ioe</span></th>
+            <th><span>Cip Address</span></th>
+            <th><span>Message Type</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let messageMap of messageMaps ;trackBy: trackId">
+                <td><a [routerLink]="['/message-map', messageMap.id, 'view' ]">{{messageMap.id}}</a></td>
+                <td>{{messageMap.message}}</td>
+                <td>{{messageMap.bit}}</td>
+                <td>{{messageMap.isActive}}</td>
+                <td>{{messageMap.ioe}}</td>
+                <td>{{messageMap.cipAddress}}</td>
+                <td>
+                    <div *ngIf="messageMap.messageType">
+                        <a [routerLink]="['../message-type', messageMap.messageType?.id, 'view' ]" >{{messageMap.messageType?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/message-map', messageMap.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/message-map', messageMap.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'message-map/'+ messageMap.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+    "name": "NoteCategory",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "language",
+            "fieldType": "Language",
+            "fieldValues": "ENGLISH,SPANISH,FRENCH"
+        },
+        {
+            "fieldName": "message",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190104180611",
+    "entityTableName": "note_category",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

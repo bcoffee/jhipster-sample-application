@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-notification-parameter-heading">Create or edit a Notification Parameter</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!notificationParameter.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="notificationParameter.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_measure">Measure</label>
+                    <input type="text" class="form-control" name="measure" id="field_measure"
+                        [(ngModel)]="notificationParameter.measure" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_duration">Duration</label>
+                    <input type="number" class="form-control" name="duration" id="field_duration"
+                        [(ngModel)]="notificationParameter.duration" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_durationTrack">Duration Track</label>
+                    <input type="number" class="form-control" name="durationTrack" id="field_durationTrack"
+                        [(ngModel)]="notificationParameter.durationTrack" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_count">Count</label>
+                    <input type="number" class="form-control" name="count" id="field_count"
+                        [(ngModel)]="notificationParameter.count" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_countTrack">Count Track</label>
+                    <input type="number" class="form-control" name="countTrack" id="field_countTrack"
+                        [(ngModel)]="notificationParameter.countTrack" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_scaneDate">Scane Date</label>
+                    <div class="input-group">
+                        <input id="field_scaneDate" type="text" class="form-control" name="scaneDate" ngbDatepicker  #scaneDateDp="ngbDatepicker" [(ngModel)]="notificationParameter.scaneDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="scaneDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_notification">Notification</label>
+                    <select class="form-control" id="field_notification" name="notification" [(ngModel)]="notificationParameter.notification" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="notificationOption.id === notificationParameter.notification?.id ? notificationParameter.notification : notificationOption" *ngFor="let notificationOption of notifications; trackBy: trackNotificationById">{{notificationOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

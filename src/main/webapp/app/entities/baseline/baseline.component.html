@@ -1,0 +1,74 @@
+<div>
+    <h2 id="page-heading">
+        <span>Baselines</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-baseline" [routerLink]="['/baseline/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Baseline
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="baselines">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Cycle Length</span></th>
+            <th><span>Min Tolerance</span></th>
+            <th><span>Max Tolerance</span></th>
+            <th><span>Min Normal Tolerance</span></th>
+            <th><span>Max Normal Tolerance</span></th>
+            <th><span>Baseline Model</span></th>
+            <th><span>Baseline Code</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let baseline of baselines ;trackBy: trackId">
+                <td><a [routerLink]="['/baseline', baseline.id, 'view' ]">{{baseline.id}}</a></td>
+                <td>{{baseline.cycleLength}}</td>
+                <td>{{baseline.minTolerance}}</td>
+                <td>{{baseline.maxTolerance}}</td>
+                <td>{{baseline.minNormalTolerance}}</td>
+                <td>{{baseline.maxNormalTolerance}}</td>
+                <td>
+                    <div *ngIf="baseline.baselineModel">
+                        <a [routerLink]="['../model', baseline.baselineModel?.id, 'view' ]" >{{baseline.baselineModel?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="baseline.baselineCode">
+                        <a [routerLink]="['../model-code', baseline.baselineCode?.id, 'view' ]" >{{baseline.baselineCode?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/baseline', baseline.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/baseline', baseline.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'baseline/'+ baseline.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{
+    "name": "Licence",
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "features",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190104180612",
+    "entityTableName": "licence",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

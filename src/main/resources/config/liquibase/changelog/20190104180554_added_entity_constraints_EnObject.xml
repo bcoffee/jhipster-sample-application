@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity EnObject.
+    -->
+    <changeSet id="20190104180554-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="object_type_id"
+                                 baseTableName="en_object"
+                                 constraintName="fk_en_object_object_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="en_object_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="object_parent_id"
+                                 baseTableName="en_object"
+                                 constraintName="fk_en_object_object_parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="en_object"/>
+
+        <addForeignKeyConstraint baseColumnNames="message_map_id"
+                                 baseTableName="en_object"
+                                 constraintName="fk_en_object_message_map_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="message_map"/>
+
+    </changeSet>
+</databaseChangeLog>
