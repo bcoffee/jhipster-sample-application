@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-report-heading">Create or edit a Report</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!report.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="report.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="report.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="report.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_language">Language</label>
+                    <select class="form-control" name="language" [(ngModel)]="report.language" id="field_language" >
+                        <option value="ENGLISH">ENGLISH</option>
+                        <option value="SPANISH">SPANISH</option>
+                        <option value="FRENCH">FRENCH</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_instructions">Instructions</label>
+                    <input type="text" class="form-control" name="instructions" id="field_instructions"
+                        [(ngModel)]="report.instructions" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_layout">Layout</label>
+                    <div>
+                        <div *ngIf="report.layout" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(report.layoutContentType, report.layout)">open</a><br>
+                            <span class="pull-left">{{report.layoutContentType}}, {{byteSize(report.layout)}}</span>
+                            <button type="button" (click)="report.layout=null;report.layoutContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_layout" (change)="setFileData($event, report, 'layout', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="layout" id="field_layout"
+                        [(ngModel)]="report.layout" />
+                    <input type="hidden" class="form-control" name="layoutContentType" id="field_layoutContentType"
+                        [(ngModel)]="report.layoutContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reportType">Report Type</label>
+                    <select class="form-control" id="field_reportType" name="reportType" [(ngModel)]="report.reportType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="reportTypeOption.id === report.reportType?.id ? report.reportType : reportTypeOption" *ngFor="let reportTypeOption of reporttypes; trackBy: trackReportTypeById">{{reportTypeOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reportOwner">Report Owner</label>
+                    <select class="form-control" id="field_reportOwner" name="reportOwner" [(ngModel)]="report.reportOwner" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === report.reportOwner?.id ? report.reportOwner : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reportCategory">Report Category</label>
+                    <select class="form-control" id="field_reportCategory" name="reportCategory" [(ngModel)]="report.reportCategory">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="reportCategoryOption.id === report.reportCategory?.id ? report.reportCategory : reportCategoryOption" *ngFor="let reportCategoryOption of reportcategories; trackBy: trackReportCategoryById">{{reportCategoryOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

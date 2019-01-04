@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="baseline">
+            <h2><span>Baseline</span> {{baseline.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cycle Length</span></dt>
+                <dd>
+                    <span>{{baseline.cycleLength}}</span>
+                </dd>
+                <dt><span>Min Tolerance</span></dt>
+                <dd>
+                    <span>{{baseline.minTolerance}}</span>
+                </dd>
+                <dt><span>Max Tolerance</span></dt>
+                <dd>
+                    <span>{{baseline.maxTolerance}}</span>
+                </dd>
+                <dt><span>Min Normal Tolerance</span></dt>
+                <dd>
+                    <span>{{baseline.minNormalTolerance}}</span>
+                </dd>
+                <dt><span>Max Normal Tolerance</span></dt>
+                <dd>
+                    <span>{{baseline.maxNormalTolerance}}</span>
+                </dd>
+                <dt><span>Baseline Model</span></dt>
+                <dd>
+                    <div *ngIf="baseline.baselineModel">
+                        <a [routerLink]="['/model', baseline.baselineModel?.id, 'view']">{{baseline.baselineModel?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Baseline Code</span></dt>
+                <dd>
+                    <div *ngIf="baseline.baselineCode">
+                        <a [routerLink]="['/model-code', baseline.baselineCode?.id, 'view']">{{baseline.baselineCode?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/baseline', baseline.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

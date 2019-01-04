@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="messageMap">
+            <h2><span>Message Map</span> {{messageMap.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Message</span></dt>
+                <dd>
+                    <span>{{messageMap.message}}</span>
+                </dd>
+                <dt><span>Bit</span></dt>
+                <dd>
+                    <span>{{messageMap.bit}}</span>
+                </dd>
+                <dt><span>Is Active</span></dt>
+                <dd>
+                    <span>{{messageMap.isActive}}</span>
+                </dd>
+                <dt><span>Ioe</span></dt>
+                <dd>
+                    <span>{{messageMap.ioe}}</span>
+                </dd>
+                <dt><span>Cip Address</span></dt>
+                <dd>
+                    <span>{{messageMap.cipAddress}}</span>
+                </dd>
+                <dt><span>Message Type</span></dt>
+                <dd>
+                    <div *ngIf="messageMap.messageType">
+                        <a [routerLink]="['/message-type', messageMap.messageType?.id, 'view']">{{messageMap.messageType?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/message-map', messageMap.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
