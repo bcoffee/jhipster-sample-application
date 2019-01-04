@@ -1,0 +1,81 @@
+{
+    "name": "ReportSubscription",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "language",
+            "fieldType": "Language",
+            "fieldValues": "ENGLISH,SPANISH,FRENCH"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "range",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rangeN",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "emailMessage",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "subscriptionReport",
+            "otherEntityName": "report",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "reportSubscription"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "subscriptionDistributionList",
+            "otherEntityName": "distributionList",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "reportSubscription"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "subscriptionUser",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "reportSubscription"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "reportSubscriptionUser",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "reportSubscription"
+        }
+    ],
+    "changelogDate": "20190104180609",
+    "entityTableName": "report_subscription",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

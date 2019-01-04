@@ -38,6 +38,32 @@ public class CacheConfiguration {
             cm.createCache(io.github.jhipster.application.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.jhipster.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Customer.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Installation.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.EnObject.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.EnObject.class.getName() + ".objectAttributes", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.EnObjectType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.MessageType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.MessageMap.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.MessageMap.class.getName() + ".messageObjects", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Baseline.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Model.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ModelCode.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Attribute.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Attribute.class.getName() + ".objectOptions", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.AttributeOption.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Report.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ReportType.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ReportCategory.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Notification.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Notification.class.getName() + ".notificationParameters", jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.DistributionList.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.NotificationParameter.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.ReportSubscription.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Note.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.NoteCategory.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.Licence.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.jhipster.application.domain.UserOption.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

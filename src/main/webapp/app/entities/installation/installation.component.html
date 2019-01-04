@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span>Installations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-installation" [routerLink]="['/installation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Installation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="installations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Language</span></th>
+            <th><span>Street Address</span></th>
+            <th><span>Postal Code</span></th>
+            <th><span>City</span></th>
+            <th><span>State Province</span></th>
+            <th><span>Time Zone</span></th>
+            <th><span>Installation</span></th>
+            <th><span>Installation Licence</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let installation of installations ;trackBy: trackId">
+                <td><a [routerLink]="['/installation', installation.id, 'view' ]">{{installation.id}}</a></td>
+                <td>{{installation.name}}</td>
+                <td>{{installation.description}}</td>
+                <td>{{installation.language}}</td>
+                <td>{{installation.streetAddress}}</td>
+                <td>{{installation.postalCode}}</td>
+                <td>{{installation.city}}</td>
+                <td>{{installation.stateProvince}}</td>
+                <td>{{installation.timeZone}}</td>
+                <td>
+                    <div *ngIf="installation.installation">
+                        <a [routerLink]="['../en-object', installation.installation?.id, 'view' ]" >{{installation.installation?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="installation.installationLicence">
+                        <a [routerLink]="['../licence', installation.installationLicence?.id, 'view' ]" >{{installation.installationLicence?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/installation', installation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/installation', installation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'installation/'+ installation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
