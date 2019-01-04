@@ -1,0 +1,57 @@
+{
+    "name": "Note",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "language",
+            "fieldType": "Language",
+            "fieldValues": "ENGLISH,SPANISH,FRENCH"
+        },
+        {
+            "fieldName": "message",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cycleId",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "noteUser",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "note"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "parentNote",
+            "otherEntityName": "note",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "note"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "noteCategory",
+            "otherEntityName": "noteCategory",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "note"
+        }
+    ],
+    "changelogDate": "20190104175747",
+    "entityTableName": "note",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

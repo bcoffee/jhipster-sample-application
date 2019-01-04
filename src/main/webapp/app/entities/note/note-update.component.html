@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-note-heading">Create or edit a Note</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!note.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="note.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="note.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_language">Language</label>
+                    <select class="form-control" name="language" [(ngModel)]="note.language" id="field_language" >
+                        <option value="ENGLISH">ENGLISH</option>
+                        <option value="SPANISH">SPANISH</option>
+                        <option value="FRENCH">FRENCH</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_message">Message</label>
+                    <input type="text" class="form-control" name="message" id="field_message"
+                        [(ngModel)]="note.message" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cycleId">Cycle Id</label>
+                    <input type="text" class="form-control" name="cycleId" id="field_cycleId"
+                        [(ngModel)]="note.cycleId" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_noteUser">Note User</label>
+                    <select class="form-control" id="field_noteUser" name="noteUser" [(ngModel)]="note.noteUser" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === note.noteUser?.id ? note.noteUser : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_parentNote">Parent Note</label>
+                    <select class="form-control" id="field_parentNote" name="parentNote" [(ngModel)]="note.parentNote">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="noteOption.id === note.parentNote?.id ? note.parentNote : noteOption" *ngFor="let noteOption of parentnotes; trackBy: trackNoteById">{{noteOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_noteCategory">Note Category</label>
+                    <select class="form-control" id="field_noteCategory" name="noteCategory" [(ngModel)]="note.noteCategory">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="noteCategoryOption.id === note.noteCategory?.id ? note.noteCategory : noteCategoryOption" *ngFor="let noteCategoryOption of notecategories; trackBy: trackNoteCategoryById">{{noteCategoryOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

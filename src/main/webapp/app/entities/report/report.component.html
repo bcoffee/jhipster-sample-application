@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span>Reports</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-report" [routerLink]="['/report/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Report
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="reports">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Language</span></th>
+            <th><span>Instructions</span></th>
+            <th><span>Layout</span></th>
+            <th><span>Report Type</span></th>
+            <th><span>Report Owner</span></th>
+            <th><span>Report Category</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let report of reports ;trackBy: trackId">
+                <td><a [routerLink]="['/report', report.id, 'view' ]">{{report.id}}</a></td>
+                <td>{{report.name}}</td>
+                <td>{{report.description}}</td>
+                <td>{{report.language}}</td>
+                <td>{{report.instructions}}</td>
+                <td>
+                    <a *ngIf="report.layout" (click)="openFile(report.layoutContentType, report.layout)">open</a>
+                    <span *ngIf="report.layout">{{report.layoutContentType}}, {{byteSize(report.layout)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="report.reportType">
+                        <a [routerLink]="['../report-type', report.reportType?.id, 'view' ]" >{{report.reportType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{report.reportOwner?.id}}
+                </td>
+                <td>
+                    <div *ngIf="report.reportCategory">
+                        <a [routerLink]="['../report-category', report.reportCategory?.id, 'view' ]" >{{report.reportCategory?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/report', report.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/report', report.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'report/'+ report.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

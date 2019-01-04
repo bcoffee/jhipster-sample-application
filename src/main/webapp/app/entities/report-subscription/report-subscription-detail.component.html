@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reportSubscription">
+            <h2><span>Report Subscription</span> {{reportSubscription.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{reportSubscription.name}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{reportSubscription.description}}</span>
+                </dd>
+                <dt><span>Language</span></dt>
+                <dd>
+                    <span>{{reportSubscription.language}}</span>
+                </dd>
+                <dt><span>Start Date</span></dt>
+                <dd>
+                    <span>{{reportSubscription.startDate}}</span>
+                </dd>
+                <dt><span>Range</span></dt>
+                <dd>
+                    <span>{{reportSubscription.range}}</span>
+                </dd>
+                <dt><span>Range N</span></dt>
+                <dd>
+                    <span>{{reportSubscription.rangeN}}</span>
+                </dd>
+                <dt><span>Active</span></dt>
+                <dd>
+                    <span>{{reportSubscription.active}}</span>
+                </dd>
+                <dt><span>Email Message</span></dt>
+                <dd>
+                    <span>{{reportSubscription.emailMessage}}</span>
+                </dd>
+                <dt><span>Subscription Report</span></dt>
+                <dd>
+                    <div *ngIf="reportSubscription.subscriptionReport">
+                        <a [routerLink]="['/report', reportSubscription.subscriptionReport?.id, 'view']">{{reportSubscription.subscriptionReport?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Subscription Distribution List</span></dt>
+                <dd>
+                    <div *ngIf="reportSubscription.subscriptionDistributionList">
+                        <a [routerLink]="['/distribution-list', reportSubscription.subscriptionDistributionList?.id, 'view']">{{reportSubscription.subscriptionDistributionList?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Subscription User</span></dt>
+                <dd>
+                    {{reportSubscription.subscriptionUser?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/report-subscription', reportSubscription.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

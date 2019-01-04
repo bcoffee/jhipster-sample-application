@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Baseline.
+    -->
+    <changeSet id="20190104175735-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="baseline_model_id"
+                                 baseTableName="baseline"
+                                 constraintName="fk_baseline_baseline_model_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="model"/>
+
+        <addForeignKeyConstraint baseColumnNames="baseline_code_id"
+                                 baseTableName="baseline"
+                                 constraintName="fk_baseline_baseline_code_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="model_code"/>
+
+    </changeSet>
+</databaseChangeLog>

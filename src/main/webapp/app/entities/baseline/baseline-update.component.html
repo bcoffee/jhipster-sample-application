@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-baseline-heading">Create or edit a Baseline</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!baseline.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="baseline.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cycleLength">Cycle Length</label>
+                    <input type="number" class="form-control" name="cycleLength" id="field_cycleLength"
+                        [(ngModel)]="baseline.cycleLength" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_minTolerance">Min Tolerance</label>
+                    <input type="number" class="form-control" name="minTolerance" id="field_minTolerance"
+                        [(ngModel)]="baseline.minTolerance" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_maxTolerance">Max Tolerance</label>
+                    <input type="number" class="form-control" name="maxTolerance" id="field_maxTolerance"
+                        [(ngModel)]="baseline.maxTolerance" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_minNormalTolerance">Min Normal Tolerance</label>
+                    <input type="number" class="form-control" name="minNormalTolerance" id="field_minNormalTolerance"
+                        [(ngModel)]="baseline.minNormalTolerance" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_maxNormalTolerance">Max Normal Tolerance</label>
+                    <input type="number" class="form-control" name="maxNormalTolerance" id="field_maxNormalTolerance"
+                        [(ngModel)]="baseline.maxNormalTolerance" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_baselineModel">Baseline Model</label>
+                    <select class="form-control" id="field_baselineModel" name="baselineModel" [(ngModel)]="baseline.baselineModel">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="modelOption.id === baseline.baselineModel?.id ? baseline.baselineModel : modelOption" *ngFor="let modelOption of baselinemodels; trackBy: trackModelById">{{modelOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_baselineCode">Baseline Code</label>
+                    <select class="form-control" id="field_baselineCode" name="baselineCode" [(ngModel)]="baseline.baselineCode">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="modelCodeOption.id === baseline.baselineCode?.id ? baseline.baselineCode : modelCodeOption" *ngFor="let modelCodeOption of baselinecodes; trackBy: trackModelCodeById">{{modelCodeOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

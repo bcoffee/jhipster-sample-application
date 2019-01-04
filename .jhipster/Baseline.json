@@ -1,0 +1,52 @@
+{
+    "name": "Baseline",
+    "fields": [
+        {
+            "fieldName": "cycleLength",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "minTolerance",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "maxTolerance",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "minNormalTolerance",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "maxNormalTolerance",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "baselineModel",
+            "otherEntityName": "model",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "baseline"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "baselineCode",
+            "otherEntityName": "modelCode",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "baseline"
+        }
+    ],
+    "changelogDate": "20190104175735",
+    "entityTableName": "baseline",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

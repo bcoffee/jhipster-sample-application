@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-en-object-heading">Create or edit a En Object</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!enObject.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="enObject.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="enObject.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="enObject.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_language">Language</label>
+                    <select class="form-control" name="language" [(ngModel)]="enObject.language" id="field_language" >
+                        <option value="ENGLISH">ENGLISH</option>
+                        <option value="SPANISH">SPANISH</option>
+                        <option value="FRENCH">FRENCH</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_objectType">Object Type</label>
+                    <select class="form-control" id="field_objectType" name="objectType" [(ngModel)]="enObject.objectType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="enObjectTypeOption.id === enObject.objectType?.id ? enObject.objectType : enObjectTypeOption" *ngFor="let enObjectTypeOption of objecttypes; trackBy: trackEnObjectTypeById">{{enObjectTypeOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_objectParent">Object Parent</label>
+                    <select class="form-control" id="field_objectParent" name="objectParent" [(ngModel)]="enObject.objectParent">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="enObjectOption.id === enObject.objectParent?.id ? enObject.objectParent : enObjectOption" *ngFor="let enObjectOption of objectparents; trackBy: trackEnObjectById">{{enObjectOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
