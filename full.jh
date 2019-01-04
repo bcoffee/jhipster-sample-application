@@ -1,0 +1,185 @@
+
+entity Customer {
+	name String,	
+    description String
+}
+
+entity Installation {
+	name String,	
+    description String,
+    language Language,
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String,
+    timeZone String    
+}
+
+entity EnObject {
+	name String,	
+    description String,
+    language Language
+}
+
+entity EnObjectType {
+	name String	
+}
+
+enum Language {
+   ENGLISH, SPANISH, FRENCH
+}
+
+entity MessageType {
+	code String,
+    description String,
+    definition String,
+    isProductionStop Boolean    
+}
+
+entity MessageMap {
+	message String,
+    bit Integer,
+    isActive Boolean,
+    ioe String,
+    cipAddress String
+}
+
+entity Baseline {
+	cycleLength Float,
+    minTolerance Float,
+    maxTolerance Float,
+    minNormalTolerance Float,
+    maxNormalTolerance Float,
+}
+
+entity Model {
+	name String
+}
+
+entity ModelCode {
+	name String	
+}
+
+entity Attribute {
+	name String,
+    description String,
+    isSystem Boolean,
+    type String
+}
+
+entity AttributeOption {
+	name String,
+    value String
+}
+
+entity Report {
+	name String,	
+    description String,
+    language Language,
+    instructions String,
+    layout Blob
+}
+
+entity ReportType {
+	name String,	
+}
+
+entity ReportCategory {
+	name String,	
+}
+
+entity Notification {
+	name String,	
+    description String,
+    language Language,
+    email String
+    phone String
+}
+
+entity DistributionList {
+	name String
+}
+
+entity NotificationParameter {
+	measure String,	
+    duration Float,
+    durationTrack Float,
+    count Integer,
+    countTrack Integer,
+    scaneDate LocalDate
+}
+
+entity ReportSubscription {
+	name String,	
+    description String,
+    language Language,
+    startDate LocalDate,	 
+    range String,
+    rangeN Integer,
+    active Boolean,
+    emailMessage String,
+}
+
+entity Note {
+	name String,	
+    language Language,
+    message String,
+    cycleId String
+}
+
+entity NoteCategory {
+	name String,	
+    language Language,
+    message String
+}
+
+entity Licence {
+	startDate LocalDate,	
+    endDate LocalDate
+    features Integer
+}
+
+entity UserOption {
+	name String,
+    value String,
+    category String
+}
+
+relationship OneToOne {
+	Customer{customerInstallation} to Installation
+    Installation{installation} to EnObject
+ 	Baseline{baselineModel} to Model
+    Baseline{baselineCode} to ModelCode
+    EnObject{objectType} to EnObjectType
+    EnObject{objectParent} to EnObject
+    MessageMap{messageType} to MessageType
+  	Report{reportType} to ReportType
+    Report{reportOwner} to User
+    Report{reportCategory} to ReportCategory
+    ReportSubscription{subscriptionReport} to Report
+    Installation{installationLicence} to Licence
+    ReportSubscription{subscriptionDistributionList} to DistributionList
+    Notification{notificationDistributionList} to DistributionList
+    ReportSubscription{subscriptionUser} to User
+    Notification{notificationDUser} to User
+    Note{noteUser} to User
+    Note{parentNote} to Note
+    Note{noteCategory} to NoteCategory
+}
+
+relationship OneToMany {
+    EnObject{objectAttributes} to Attribute
+    Attribute{objectOptions} to AttributeOption
+    MessageMap{messageObjects} to EnObject
+    Installation{installationUser} to User
+    Notification{notificationUser} to User
+    ReportSubscription{reportSubscriptionUser} to User
+    
+    DistributionList{distributionList} to User
+    UserOption {userOptions} to User
+}
+
+
+
+
+
